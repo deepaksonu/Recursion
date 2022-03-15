@@ -4,7 +4,7 @@ public class RotatedBinarySearch {
 
     public static void main(String[] args) {
 
-        int[] arr = {5,6,7,8,9,1,2,3,4};
+        int[] arr = {5,6,7,8,9,1,2,3,4,4,4};
         System.out.println(search(arr, 9, 0 , arr.length-1));
     }
 
@@ -33,7 +33,6 @@ public class RotatedBinarySearch {
         if(target >= arr[m] && target <= arr[e]){
             return search(arr, target, m+1, e);
         }
-
 
         return  -1;
     }

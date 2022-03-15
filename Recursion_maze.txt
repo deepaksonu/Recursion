@@ -1,0 +1,75 @@
+Maze problem
+Counting path
+static int count(int r,int c){
+	if(r == 1 || c ==1){
+		return 1;
+	}
+	
+	int left = count(r-1,c);
+	int right = count(r,c-1);
+	
+	return left + right;
+}
+
+Print path
+
+static void printPath(String p, int r, int c){
+	if(r ==1 && c ==1 ){
+		System.out.println(p);
+	}
+
+	if(r > 0)
+		printPath(p+'R', r-1,c);
+	if(c > 0)
+		printPath(p+'L', r,c-1);
+}
+
+static List<String> listPaths(String p, int r, int c){
+        List<String> pathList = new ArrayList();
+        if(r == 1 && c == 1){
+            pathList.add(p);
+            return pathList;
+        }
+
+        if(r > 1){
+            pathList.addAll(listPaths(p + 'R', r-1,c));
+        }
+
+        if(c > 1){
+            pathList.addAll(listPaths(p + 'L', r, c-1));
+        }
+        return pathList;
+    }
+	
+Maze with Restricton
+boolean[][] maze = {
+				{true, true, true},
+				{true, false, true},
+				{true, true, true}
+				};
+r = 0-n
+c = 0-n				
+static List<String> mazeWithRestrictions(String p,boolean[][] maze,int r,int c){
+        List<String> pathList = new ArrayList();
+        if(r == maze.length -1  && c == maze[0].length - 1){
+            pathList.add(p);
+            return pathList;
+        }
+
+        if(!maze[r][c]){
+            return pathList;
+        }
+
+        if(r < maze.length -1){
+            pathList.addAll(mazeWithRestrictions(p + 'R', maze, r+1, c));
+        }
+
+        if(c < maze[0].length -1){
+            pathList.addAll(mazeWithRestrictions(p + 'L', maze, r , c+1));
+        }
+
+        return pathList;
+
+    }
+}
+				

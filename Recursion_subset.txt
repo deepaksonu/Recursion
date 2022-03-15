@@ -1,0 +1,55 @@
+skip character
+static void skipCharacter(String p,String up){
+	if(p.isEmpty()){
+		System.out.println(up);
+		return;
+	}
+	
+	if(p.charAt(0) == 'a'){
+		
+	}else{
+		up = up + p.charAt(0);
+		
+	}
+	skipCharacter(p.substring(1), up);
+}
+
+static String skipCharacter(String p){
+	if(p.isEmpty()){
+		return "";
+	}
+	if(p.charAt(0) == 'a'){
+		return skipCharacter(p.substring(1));
+	}else{
+		return p.charAt(0) + skipCharacter(p.substring(1));
+	}
+
+}
+
+subset : take it or leave it
+					/abc
+				a/bc		/bc
+			ab/c 	a/c	  b/c /c
+		abc/  ab/  ac/ a/ bc/ b/ c/ /
+
+static void subset(String up, String p){
+	if(up.isEmpty()){
+		System.out.println(p);
+		return;
+	}
+	char ch = up.charAt(0);
+	subset(up.substring(1), p+ch);
+	subset(up.substring(1), p);
+}
+
+static List<String> subset(String up,String p){
+	List<String> pList = new ArrayList();
+	if(up.isEmpty()){
+		return pList;
+	}
+	Char ch = up.charAt(0);
+	pList.add(substring(up.substring(1), p + ch));
+	pList.add(subset(up.substring(1), p));
+	
+	return pList;
+}

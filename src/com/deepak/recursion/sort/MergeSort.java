@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class MergeSort {
     public static void main(String[] args) {
 
-        int[] arr = {8,3,4,12,5,6};
+        int[] arr = {5,4,3,2,1};
         //System.out.println(Arrays.toString(mergeSort(arr)));
         mergeSortInPlace(arr,0,arr.length);
         System.out.println(Arrays.toString(arr));
@@ -55,7 +55,7 @@ public class MergeSort {
 
 
     static void mergeSortInPlace(int[] arr, int s, int e){
-        if(e - s == 1) {
+        if(s == e-1) {
             return;
         }
         int mid = s + (e-s)/2;
@@ -66,11 +66,11 @@ public class MergeSort {
     }
 
     static void mergeInPlace(int[] arr,int s, int m, int e){
-        int i = 0;
+        int i = s;
         int j = m;
         int k = 0;
-        int[] mix = new int[e];
-        while(i < s && j < e){
+        int[] mix = new int[e-s];
+        while(i < m && j < e){
             if(arr[i] < arr[j]){
                 mix[k] = arr[i];
                 i++;
@@ -81,7 +81,7 @@ public class MergeSort {
             k++;
         }
 
-        while(i < s){
+        while(i < m){
             mix[k] = arr[i];
             i++;
             k++;
@@ -92,8 +92,8 @@ public class MergeSort {
             j++;
             k++;
         }
-        for (int l = 0; i < arr.length ; i++){
-            arr[l] = mix[l];
+        for (int l = 0; l < mix.length ; l++){
+            arr[l+s] = mix[l];
         }
     }
 

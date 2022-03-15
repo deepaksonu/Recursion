@@ -1,0 +1,74 @@
+isSorted Array
+static boolean isSorted(int[] arr,int i){
+	if(arr.length-1 == i) return true;
+	
+	if(arr[i] >= arr[i+1]){
+		return isSorted(arr,i+1);
+	}else return false;
+}
+
+1234
+i=0,1,2,3
+
+linearSearch
+static int linearSearch(int[] arr,int target,int i){
+	if(arr.length-1 == i) return -1;
+	
+	if(arr[i] == target)return i;
+	else linearSearch(arr,target,i+1);
+}
+
+All
+static List<integer> linearSearchAll(int[] arr,int target,int i){
+	List<Integer> temp = new ArrayList();
+	if(arr.length-1 == i) return temp;
+	
+	if(arr[i] == target) return temp.add(i);
+	List<Integer> list = linearSearch(arr,target,i+1);
+	list.addAll(temp);
+	
+	return list;
+}
+
+rotatedBinarySearch
+
+0 1 2 3 4 5 6 7 8 9 10
+5 6 7 8 9 1 2 3 4 4 4
+
+m = 5
+case 1 : if(arr[s] <= arr[mid]) //sorted
+			if(target >= arr[s) && target <= arr[mid])
+				rotatedBinarySearch(arr,target,s,mid-1)
+			else rotatedBinarySearch(arr,target,mid+1,e);
+case 2 : 
+
+s(4,0,10) ; m=5  , 
+s(4,6,10); m=8
+s(4,6,8); m=7
+s(4,7,8);m=7
+
+1 2 3 4 5 9 
+5 9 1 2 3 4
+3 4 5 9 1 2
+
+static int rotatedBinarySearch(int[] arr, int target, int s, int e){
+	if(s < e)return -1;
+	
+	int mid = s + (e-s)/2;
+	if(arr[mid] == target) return mid;
+	
+	if(arr[s] <= arr[mid]){
+		if(target >= arr[s] && target <= arr[mid]){
+			rotatedBinarySearch(arr,target,s,mid-1);
+		}else
+			rotatedBinarySearch(arr,target,mid+1,e);
+	}
+	
+	if(target >= arr[s] && target <= arr[mid])
+		rotatedBinarySearch(arr,target,s,mid-1);
+	if(target >= arr[s] && target >= arr[mid])
+		rotatedBinarySearch(arr,target,mid+1,e);
+		
+	return -1;
+
+}

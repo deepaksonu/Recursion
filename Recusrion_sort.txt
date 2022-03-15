@@ -1,0 +1,80 @@
+Merge Sort
+Array 5 6 9 1 2 3 4
+Index 0 1 2 3 4 5 6
+
+			a03			a37
+		a01		a13
+	a00	 a01 a12   a23
+		
+
+static void mergeSortInplace(int[] arr,int s,int e){
+
+	if(s - e ==1){
+		return;
+	}
+	int mid = s + (e-s)/2;
+	mergeSortInplace(arr,s,m);
+	mergeSortInplace(arr,m,e);
+	
+	return merge(arr,s,m,e);
+
+}
+
+static int[] merge(int[] arr,int s, int m, int e){
+	int j = s;
+	int j = m;
+	int k = 0;
+	int[] mix = new int[e-s];
+	while(i < m && j < e){
+	
+		if(arr[i] < arr[j]){
+			mix[k] = arr[i];
+			i++;
+		}else{
+			mix[k] = arr[j];
+			j++;
+		}
+		k++;
+	}
+	
+	while(i < m){
+		mix[k] = arr[i];
+		i++;k++;
+	}
+	
+	while(j < e){
+		mix[k] = arr[j];
+		j++;k++;
+	}
+
+	for(int l = 0; l < mix.length ; l++){
+		arr[s+l] = mix[l];
+	}
+	
+	return arr;
+}
+
+Quick Sort
+static void quickSort(int[] arr,int l, int h){
+	int s = l;
+	int e = h;
+	int pivot = int[h];
+	
+	while(s<=e){
+		if(arr[s] < pivot) s++;
+		
+		if(arr[e] > pivot)  e--;
+		
+		if(s <= e){
+			int temp = arr[s];
+			arr[s] = arr[e];
+			arr[s] = temp;
+			s++;
+			e--;
+		}
+	}
+	
+	quickSort(arr,l,e);
+	quickSort(arr,s,h);
+}
+
